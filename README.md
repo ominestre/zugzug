@@ -1,6 +1,6 @@
 # ZugZug - Gulp Peon Workers!
 
-This module is for quickly adding some commong Gulp tasks used in web projects.  Work, work.
+This module is for quickly adding some common Gulp tasks used in web projects.  Work, work.
 
 ## Installation & Setup
 
@@ -10,47 +10,46 @@ This module is for quickly adding some commong Gulp tasks used in web projects. 
 
 Use ```npm install --save-dev <link-to-this-repo>``` to install zugzug as one of your projects development dependencies.
 
-### Configuration
-
-There is one configuration file you will need to change before you can get going.  Navigate into <project_root>/node_modules/zugzug/config/ and open the paths.js file.  This file contains all of the path configurations Gulp will use for inputs and output for your tasks.  Please update these paths to match your projects layout.
-
-**!important:** These paths are relative to your gulpfile and not path.js
-
-* css
-  * source {String || Array} - location of your css files
-  * output {String} - where to drop results
-  * outputName - what to name the output file (eg. styles.css)
-* image
-  * source {String || Array} - location of your image files to optimize
-  * output {String} - where to drop results
-* javascript
-  * standard
-    * source {String || Array} - location of your javascript files
-    * output {String} - where to drop results
-    * outputName - what to name the output file (eg. scripts.js)
-  * webpack
-    * source {String || Array} - location of your javascript files to bundle
-    * output {String} - where to drop the results
-* sass
-  * source {String || Array} - location of your SASS files
-  * output {String} - where to drop the results
-
 ## How to use
 
-Once everything is installed you will need to create a gulpfile for your project in the main project directory.  Here is a sample gulpfile.js using this modules:
+Each function of ZugZug takes a configuration object with the following properties:
+* **source** {Array | String} - path to your source files relative to gulpfile.js
+* **destination** {String} - where to drop the processed files relative to gulpfile.js
+* **name** {String} - **OPTIONAL**
+  * This is the name of your output file.  Not required for images.
+  * During minification ".min" will be suffixed onto the name.  So if you specify "bundle.js" the final output will be "bundle.min.js".
+
+You will need to create a gulpfile in your primary project directory and pass in the configurations for each task.  Here is a sample gulpfile.js using this module with JavaScript and CSS builds:
 
 ```JavaScript
 const gulp = require('gulp');
 const build = require('zugzug');
 
-gulp.task('css', build.css);
-gulp.task('js', build.javascript);
-gulp.task('webpackjs', build.javascript.webpack);
-gulp.task('sass', build.sass);
-gulp.task('images', build.images);
+gulp.task('css', () => {
+  build.css({
+    source: './path/to/css/test.css',
+    name: 'work-complete.css',
+    destination: './build/more/farms/'
+  });
+}));
+
+gulp.task('js', () => {
+  build.js({
+    source: './what/you/want.js',
+    destination: './stop/poking/me/'
+  });
+});
 ```
 
 Each task is then invoked from the command line using ```gulp task-name```.  See [gulpjs.com](http://www.gulpjs.com) for more details on the ins and outs of Gulp.
+
+**!important** Don't use array notation to pass params into the function due to the JavaScript object having a stow away for webpack.
+
+```JavaScript
+gulp.task('js', build.javascript[{
+  //this is a lazy peon and won't work
+}]);
+```
 
 ## Tasks
 
