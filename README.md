@@ -8,7 +8,7 @@ This module is for quickly adding some common Gulp tasks used in web projects.  
 * NodeJS
 * Gulp
 
-Use ```npm install --save-dev <link-to-this-repo>``` to install zugzug as one of your projects development dependencies.
+Use ```npm install --save-dev <link-to-this-repo>```  or ```npm install --save-dev @ominestre/zugzug``` to install zugzug as one of your projects development dependencies.
 
 ## How to use
 
@@ -23,7 +23,7 @@ You will need to create a gulpfile in your primary project directory and pass in
 
 ```JavaScript
 const gulp = require('gulp');
-const build = require('zugzug');
+const build = require('@ominestre/zugzug');
 
 gulp.task('css', () => {
   build.css({
@@ -43,7 +43,7 @@ gulp.task('js', () => {
 
 Each task is then invoked from the command line using ```gulp task-name```.  See [gulpjs.com](http://www.gulpjs.com) for more details on the ins and outs of Gulp.
 
-**!important** Don't use array notation to pass params into the function due to the JavaScript object having a stow away for webpack.
+**!important** Don't use array notation to pass params into the function due to the JavaScript object having a stowaway for webpack.
 
 ```JavaScript
 gulp.task('js', build.javascript[{
