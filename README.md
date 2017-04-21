@@ -84,3 +84,14 @@ This task also generates a sourcemap which is dropped in the same location you s
 The webpack protion of zugzug allows for code splitting of your JavaScript so that you don't end up supporting a monolithic beast script.
 
 JavaScript - Webpack has the save features as JavaScript - Standard except the webpack bundler allows for code splitting.  
+
+### Zipper
+
+Creates a zip file.  Or maybe it alerts you when you leave your fly down after taking a whiz.
+
+```zugzug.zipper(options);```
+
+**options**
+* Source {String || Array} - files to include in your zip.  Excepts relative paths and wild cards.
+* Name {String} - name of the output zip file (defaults zippity.zip);
+* Destination {String} - where to drop the final product
