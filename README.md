@@ -3,6 +3,7 @@
 This module is for quickly adding some common Gulp tasks used in web projects.  Work, work.
 
 [![Build Status](https://travis-ci.org/ominestre/zugzug.svg?branch=master)](https://travis-ci.org/ominestre/zugzug)
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ominestre-zugzug/Lobby)
 
 ## Installation & Setup
 
