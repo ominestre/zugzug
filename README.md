@@ -2,6 +2,8 @@
 
 This module is for quickly adding some common Gulp tasks used in web projects.  Work, work.
 
+[![Build Status](https://travis-ci.org/ominestre/zugzug.svg?branch=master)](https://travis-ci.org/ominestre/zugzug)
+
 ## Installation & Setup
 
 **Pre-requirements**
