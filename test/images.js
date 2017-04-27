@@ -27,7 +27,7 @@ describe('Image Tasks', function(){
         });
     });
 
-    it('wtf does it do for non image files?', function(done){
+    xit('wtf does it do for non image files?', function(done){
         build.images({
             source: path.resolve(__dirname, './data/images/**/*'),
             destination: path.resolve(__dirname, './data/results/')
