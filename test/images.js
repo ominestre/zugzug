@@ -27,7 +27,7 @@ describe('Image Tasks', function(){
         });
     });
 
-    xit('wtf does it do for non image files?', function(done){
+    it('Should pass through non-image files', function(done){
         build.images({
             source: path.resolve(__dirname, './data/images/**/*'),
             destination: path.resolve(__dirname, './data/results/')
@@ -38,6 +38,13 @@ describe('Image Tasks', function(){
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/not-image/not-image.js')));
             done();
         });
-        assert(false);
+    });
+
+    afterEach(() => {
+        let results = path.resolve(__dirname, './data/results/');
+
+        if(fs.existsSync(results)){
+            require('@ominestre/rummerf')(results);
+        }
     });
 });
