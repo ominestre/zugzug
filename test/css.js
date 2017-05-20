@@ -1,10 +1,10 @@
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
+const rummerf = require('@ominestre/rummerf');
+let build = require('../');
 
 describe('CSS task', function(){
-    let build = require('../');
-
     it('Builds a single CSS file as single.min.css', function(done){
         build.css({
             source: path.resolve(__dirname, './data/css/single.css'),
@@ -55,5 +55,45 @@ describe('CSS task', function(){
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/styles.min.css')));
             done();
         });
+    });
+
+    xit('Matches an expected output when building a singlke CSS file');
+    xit('Matches an expected output when building multiple CSS files');
+
+    afterEach(() => {
+        rummerf(path.resolve(__dirname, './data/results/'));
+    });
+});
+
+describe('SASS tasks', () => {
+    xit('Throws an error when attempting to compile a SASS file with syntax errors', () => {
+        assert.throws((done) => {
+            build.sass({
+                source: path.resolve(__dirname, './data/sass/bad/*.scss'),
+                destination: path.resolve(__dirname, './data/results')
+            }).on('end', () => {
+                done()
+            }, /SASS compiler error/);
+        });
+    });
+
+    xit('Compiles SASS', (done) => {
+        build.sass({
+            source: path.resolve(__dirname, './data/sass/good/*.scss'),
+            destination: path.resolve(__dirname, './data/results')
+        }).on('end', () => {
+            assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/good.css')));
+            done();
+        });
+    });
+
+    xit('Matches an expected output when building SASS');
+
+    afterEach(() => {
+        let results = path.resolve(__dirname, './data/results/');
+
+        if(fs.existsSync(results)){
+            rummerf(results);
+        }
     });
 });

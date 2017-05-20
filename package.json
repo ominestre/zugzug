@@ -32,6 +32,7 @@
     "webpack-stream": "^3.2.0"
   },
   "devDependencies": {
+    "@ominestre/rummerf": "^1.1.0",
     "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
     "istanbul": "^1.1.0-alpha.1",
