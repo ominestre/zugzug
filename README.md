@@ -2,6 +2,10 @@
 
 This module is for quickly adding some common Gulp tasks used in web projects.  Work, work.
 
+[![Build Status](https://travis-ci.org/ominestre/zugzug.svg?branch=master)](https://travis-ci.org/ominestre/zugzug)
+[![Coverage Status](https://coveralls.io/repos/github/ominestre/zugzug/badge.svg?branch=masters)](https://coveralls.io/github/ominestre/zugzug?branch=master)
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ominestre-zugzug/Lobby)
+
 ## Installation & Setup
 
 **Pre-requirements**
@@ -55,32 +59,106 @@ gulp.task('js', build.javascript[{
 
 ### CSS
 
-The CSS task is included for convenience but it is recommended you use SASS instead since it also supports standard CSS files.  
+The CSS task is included for convenience and legacy support but it is recommended that you adopt SASS instead.
 
-A CSS prefixer is included to add vendor prefixes to all your styles where needed.  The configuration for this prefixer can be found in "/config/css.js".
+This task features file concatenation of all specified CSS files, auto-prefixing, generates a sourcemap, and minification.
 
-If an array of filepaths is provided in the css.source property in "/config/paths.js" these files will be concatenated together into a single file.  The name of this file is taken from css.outputName in "/config/paths.js".
+```JavaScript
+const build = require('@ominestre/zugzug');
 
-All CSS files passed through this task will be minified.  Both a non-minified and minified file will be placed at the destination and the minified version will be suffixed with ".min".  For example if you have css.outputName set to "styles.css" you will be able to find both "styles.css" and "styles.min.css" in the output directory. 
+build.css({
+  source: '/path/to/files/*.css',
+  destination: '/path/to/destination/',
+  name: 'optional.file.name' //defaults to styles.css if not specified
+});
+```
+
+### SASS
+
+This will compile all of your SASS files.  It will also run each through an auto-prefixer and generate source maps.  For minification it is recommended that you chain the output of this into the CSS task (example below);
+
+```JavaScript
+const build = require('@ominestre/zugzug');
+
+build.sass({
+  source: '/path/main.scss',
+  destination: '/path/to/destination/'
+}).on('end', () => {
+  build.css({
+    source: '/path/to/destination/main.scss',
+    destination: '/path/to/destination/',
+    name: 'sass-demo.css'
+  });
+})
+```
+
 
 ### Images
 
-Images uses Gulp Imagemin for compression of PNG, JPG, GIF, and SVG files. It will compress all files specified in images.source of "/config/paths.js" and output the compressed results in the path specified in the config.
+Images uses Gulp Imagemin for compression of PNG, JPG, GIF, and SVG files. It will compress all files specified in source.  If you use a wild card it will simply pass through all non-image files to the specified destination.
+
+```JavaScript
+const build = require('@ominestre/zugzug');
+
+build.images({
+  source: '/path/to/images/*.*',
+  destination: '/path/to/destination/'
+});
+```
 
 ### JavaScript - Standard
 
-The JavaScript has two flavors in zugzug which are standard and webpack.
+With ZugZug, JavaScript handling comes in two flavors.  Standard has concatenation of files, babel for ES5 support, sourcemapping, and minification.  Webpack is the same as standard with Webpack added for code splitting.
 
-The standard task will use configurations javascript.standard of "/config/paths.js".  It will take all files specified in source and concatenate them into a single file specified using the outputName config.
+```JavaScript
+const build = require('@ominestre/zugzug');
 
-This task will run each script through the Babel transpiler to ensure ES2015 conformity.
-
-This task will also minify the final results and add the suffix ".min", outputing both a minified and uncompressed file.
-
-This task also generates a sourcemap which is dropped in the same location you specify in javascript.standard.output
+build.javascript({
+  source: '/path/to/files/*.js',
+  destination: '/path/to/destination/',
+  name: 'optional.output.name' //uses scripts.js if not specified
+});
+```
 
 ### JavaScript - Webpack
 
 The webpack protion of zugzug allows for code splitting of your JavaScript so that you don't end up supporting a monolithic beast script.
 
-JavaScript - Webpack has the save features as JavaScript - Standard except the webpack bundler allows for code splitting.  
+To use simply point it to your primary file you wish to bundle like so:
+
+```JavaScript
+const build = require('@ominestre/zugzug');
+
+build.javascript.webpack({
+  source: '/path/to/main-js-file.js',
+  destination: '/path/to/destination/',
+  name: 'optional.output.name' //uses bundle.js if not specified
+});
+```
+
+### Zipper
+
+Creates a zip file.  Or maybe it alerts you when you leave your fly down after taking a whiz.
+
+```JavaScript
+const build = require('@ominestre/zugzug');
+
+build.zipper({
+  source: '/path/to/files/**/*.*',
+  destination: '/path/to/destination/',
+  name: 'optional.file.name' //defaults to zippity.zip if not specified
+})
+```
+
+### Mover
+
+This is just simple a file mover, equivalent of the mv command.
+
+```JavaScript
+const build = require('@ominestre/zugzug');
+
+build.mv({
+  source: '/path/to/files/*',
+  destination: '/path/to/destination/'
+});
+```
