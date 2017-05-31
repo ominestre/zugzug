@@ -10,7 +10,7 @@ describe('CSS task', function(){
             source: path.resolve(__dirname, './data/css/single.css'),
             name: 'single.css',
             destination: path.resolve(__dirname, './data/results/')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/single.min.css')));
             done();
         });
@@ -26,7 +26,7 @@ describe('CSS task', function(){
             source: files,
             name: 'multi.css',
             destination: path.resolve(__dirname, './data/results')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/multi.min.css')));
             done();
         });
@@ -36,7 +36,7 @@ describe('CSS task', function(){
         build.css({
             source: path.resolve(__dirname, './data/css/single.css'),
             destination: path.resolve(__dirname, './data/results/')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/styles.min.css')));
             done();
         });
@@ -51,7 +51,7 @@ describe('CSS task', function(){
         build.css({
             source: files,
             destination: path.resolve(__dirname, './data/results')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/styles.min.css')));
             done();
         });
@@ -71,7 +71,7 @@ describe('SASS tasks', () => {
             build.sass({
                 source: path.resolve(__dirname, './data/sass/bad/*.scss'),
                 destination: path.resolve(__dirname, './data/results')
-            }).on('end', () => {
+            }).then(() => {
                 done()
             }, /SASS compiler error/);
         });
@@ -81,7 +81,7 @@ describe('SASS tasks', () => {
         build.sass({
             source: path.resolve(__dirname, './data/sass/good/*.scss'),
             destination: path.resolve(__dirname, './data/results')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/good.css')));
             done();
         });
