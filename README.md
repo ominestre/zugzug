@@ -3,7 +3,7 @@
 This module is for quickly adding some common Gulp tasks used in web projects.  Work, work.
 
 [![Build Status](https://travis-ci.org/ominestre/zugzug.svg?branch=master)](https://travis-ci.org/ominestre/zugzug)
-[![Coverage Status](https://coveralls.io/repos/github/ominestre/zugzug/badge.svg?branch=masters)](https://coveralls.io/github/ominestre/zugzug?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/ominestre/zugzug/badge.svg?branch=master)](https://coveralls.io/github/ominestre/zugzug?branch=master)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ominestre-zugzug/Lobby)
 
 ## Installation & Setup
