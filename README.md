@@ -59,6 +59,8 @@ gulp.task('js', build.javascript[{
 
 ### CSS
 
+**Standalone**
+
 The CSS task is included for convenience and legacy support but it is recommended that you adopt SASS instead.
 
 This task features file concatenation of all specified CSS files, auto-prefixing, generates a sourcemap, and minification.
@@ -74,6 +76,8 @@ build.css({
 ```
 
 ### SASS
+
+**Does not include minification and concetenation.  Chain CSS task after.**
 
 This will compile all of your SASS files.  It will also run each through an auto-prefixer and generate source maps.  For minification it is recommended that you chain the output of this into the CSS task (example below);
 
@@ -95,6 +99,8 @@ build.sass({
 
 ### Images
 
+**Standalone**
+
 Images uses Gulp Imagemin for compression of PNG, JPG, GIF, and SVG files. It will compress all files specified in source.  If you use a wild card it will simply pass through all non-image files to the specified destination.
 
 ```JavaScript
@@ -107,6 +113,8 @@ build.images({
 ```
 
 ### JavaScript - Standard
+
+**Standalone**
 
 With ZugZug, JavaScript handling comes in two flavors.  Standard has concatenation of files, babel for ES5 support, sourcemapping, and minification.  Webpack is the same as standard with Webpack added for code splitting.
 
@@ -121,6 +129,8 @@ build.javascript({
 ```
 
 ### JavaScript - Webpack
+
+**Standalone**
 
 The webpack protion of zugzug allows for code splitting of your JavaScript so that you don't end up supporting a monolithic beast script.
 
@@ -138,6 +148,8 @@ build.javascript.webpack({
 
 ### Zipper
 
+**Standalone**
+
 Creates a zip file.  Or maybe it alerts you when you leave your fly down after taking a whiz.
 
 ```JavaScript
@@ -152,7 +164,9 @@ build.zipper({
 
 ### Mover
 
-This is just simple a file mover, equivalent of the mv command.
+**Standalone**
+
+This is just a simple file mover, equivalent of the mv command.
 
 ```JavaScript
 const build = require('@ominestre/zugzug');
