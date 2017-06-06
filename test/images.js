@@ -9,7 +9,7 @@ describe('Image Tasks', function(){
         build.images({
             source: path.resolve(__dirname, './data/images/peon.jpg'),
             destination: path.resolve(__dirname, './data/results/')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/peon.jpg')));
             done();
         });
@@ -19,7 +19,7 @@ describe('Image Tasks', function(){
         build.images({
             source: path.resolve(__dirname, './data/images/*.*'),
             destination: path.resolve(__dirname, './data/results/')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/peon.jpg')));
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/peon.1.jpg')));
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/peon.2.jpg')));
@@ -31,7 +31,7 @@ describe('Image Tasks', function(){
         build.images({
             source: path.resolve(__dirname, './data/images/**/*'),
             destination: path.resolve(__dirname, './data/results/')
-        }).on('end', () => {
+        }).then(() => {
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/peon.jpg')));
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/peon.1.jpg')));
             assert.ok(fs.existsSync(path.resolve(__dirname, './data/results/peon.2.jpg')));
