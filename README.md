@@ -1,6 +1,8 @@
-# ZugZug - Gulp Peon Workers!
+# [DEPRECATED] ZugZug - Gulp Peon Workers!
 
-This module is for quickly adding some common Gulp tasks used in web projects.  Work, work.
+I haven't worked with Gulp in several years and haven't put any maintenance or thought into this Gulp scaffold.
+
+~~This module is for quickly adding some common Gulp tasks used in web projects.  Work, work.~~
 
 [![Build Status](https://travis-ci.org/ominestre/zugzug.svg?branch=master)](https://travis-ci.org/ominestre/zugzug)
 [![Coverage Status](https://coveralls.io/repos/github/ominestre/zugzug/badge.svg?branch=master)](https://coveralls.io/github/ominestre/zugzug?branch=master)
