@@ -1,6 +1,6 @@
 {
   "name": "@ominestre/zugzug",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Gulp Build Workers",
   "main": "./lib/index.js",
   "scripts": {
